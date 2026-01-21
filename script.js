@@ -1,111 +1,83 @@
 let isAdmin = false;
 let selectedCard = null;
 
-const cards = [
-  {
-    id: 1,
-    member: "정한",
-    album: "FACE THE SUN",
-    image: "",
-    owned: true
+const adminBtn = document.getElementById("adminBtn");
+const addBtn = document.getElementById("addBtn");
+const fileInput = document.getElementById("fileInput");
+const cardGrid = document.getElementById("cardGrid");
+
+const modal = document.getElementById("editModal");
+const closeModal = document.getElementById("closeModal");
+const editMember = document.getElementById("editMember");
+const editAlbum = document.getElementById("editAlbum");
+const saveBtn = document.getElementById("saveBtn");
+const deleteBtn = document.getElementById("deleteBtn");
+
+/* 관리자 모드 */
+adminBtn.onclick = () => {
+  const pw = prompt("비밀번호 입력");
+  if (pw === "0000") {
+    isAdmin = !isAdmin;
+    alert(isAdmin ? "관리자 모드 ON" : "관리자 모드 OFF");
   }
-];
+};
 
-const grid = document.getElementById("pocaGrid");
-const editModal = document.getElementById("editModal");
-const addModal = document.getElementById("addModal");
+/* 포카 추가 */
+addBtn.onclick = () => {
+  if (!isAdmin) return alert("관리자 모드만 가능");
+  fileInput.click();
+};
 
-function renderCards() {
-  grid.innerHTML = "";
+fileInput.onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
 
-  cards.forEach(card => {
-    const div = document.createElement("div");
-    div.className = "poca-card";
-    if (!card.owned) div.classList.add("not-owned");
+  const member = prompt("멤버 이름");
+  const album = prompt("앨범 / 포카 이름");
 
-    if (card.image) {
-      const img = document.createElement("img");
-      img.src = card.image;
-      div.appendChild(img);
-    }
+  const reader = new FileReader();
+  reader.onload = () => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.member = member;
+    card.dataset.album = album;
 
-    div.onclick = () => {
-      card.owned = !card.owned;
-      renderCards();
+    const img = document.createElement("img");
+    img.src = reader.result;
+
+    card.appendChild(img);
+    cardGrid.appendChild(card);
+
+    /* 보유 토글 */
+    card.onclick = () => {
+      card.classList.toggle("unowned");
     };
 
-    div.oncontextmenu = e => {
+    /* 관리자 수정 */
+    card.oncontextmenu = (e) => {
       e.preventDefault();
       if (!isAdmin) return;
 
       selectedCard = card;
-      document.getElementById("editMember").value = card.member;
-      document.getElementById("editAlbum").value = card.album;
-      editModal.classList.remove("hidden");
+      editMember.value = card.dataset.member;
+      editAlbum.value = card.dataset.album;
+      modal.classList.remove("hidden");
     };
-
-    grid.appendChild(div);
-  });
-}
-
-renderCards();
-
-/* 관리자 */
-document.getElementById("adminBtn").onclick = () => {
-  const pw = prompt("비밀번호 입력");
-  if (pw === "0000") {
-    isAdmin = true;
-    alert("관리자 모드 ON");
-  }
-};
-
-/* 수정 */
-document.getElementById("saveBtn").onclick = () => {
-  selectedCard.member = document.getElementById("editMember").value;
-  selectedCard.album = document.getElementById("editAlbum").value;
-  editModal.classList.add("hidden");
-  renderCards();
-};
-
-/* 삭제 */
-document.getElementById("deleteBtn").onclick = () => {
-  const idx = cards.findIndex(c => c.id === selectedCard.id);
-  cards.splice(idx, 1);
-  editModal.classList.add("hidden");
-  renderCards();
-};
-
-/* 모달 닫기 */
-document.getElementById("closeModal").onclick = () => {
-  editModal.classList.add("hidden");
-};
-
-/* 추가 */
-document.getElementById("addBtn").onclick = () => {
-  if (!isAdmin) return;
-  addModal.classList.remove("hidden");
-};
-
-document.getElementById("addSaveBtn").onclick = () => {
-  const member = document.getElementById("addMember").value;
-  const album = document.getElementById("addAlbum").value;
-  const file = document.getElementById("addImage").files[0];
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    cards.push({
-      id: Date.now(),
-      member,
-      album,
-      image: reader.result,
-      owned: true
-    });
-    addModal.classList.add("hidden");
-    renderCards();
   };
   reader.readAsDataURL(file);
+  fileInput.value = "";
 };
 
-document.getElementById("closeAddModal").onclick = () => {
-  addModal.classList.add("hidden");
+/* 모달 */
+closeModal.onclick = () => modal.classList.add("hidden");
+
+saveBtn.onclick = () => {
+  selectedCard.dataset.member = editMember.value;
+  selectedCard.dataset.album = editAlbum.value;
+  modal.classList.add("hidden");
+};
+
+deleteBtn.onclick = () => {
+  selectedCard.remove();
+  modal.classList.add("hidden");
 };
