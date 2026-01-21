@@ -30,23 +30,31 @@ body {
 }
 
 .member {
-  padding: 8px 14px;
+  padding: 10px 16px;      /* ⬅️ 살짝 키움 */
   border-radius: 999px;
   border: none;
   background: #fff;
   color: #000;
+  font-size: 16px;         /* ⬅️ 폰트 크기 UP */
 }
 
 .member.active {
-  color: #9bb7d4;
+  color: #9bb7d4; /* serenity */
 }
 
-/* 포카 */
+/* 포카 그리드 */
 .poca-grid {
   padding: 12px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  grid-template-columns: repeat(5, 1fr); /* 📱 기본: 5열 */
   gap: 10px;
+}
+
+/* 아이패드 이상 */
+@media (min-width: 768px) {
+  .poca-grid {
+    grid-template-columns: repeat(6, 1fr); /* 📱➡️📱 6열 */
+  }
 }
 
 .poca-card {
@@ -66,7 +74,7 @@ body {
   opacity: 0.35;
 }
 
-/* 플로팅 */
+/* 플로팅 버튼 */
 .floating-buttons {
   position: fixed;
   right: 16px;
