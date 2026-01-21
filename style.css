@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+}
+
+/* 검색 */
+.search-wrap {
+  padding: 8px 12px;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* 멤버바 */
+.member-bar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  overflow-x: auto;
+}
+
+.member {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  color: #000;
+}
+
+.member.active {
+  color: #9bb7d4;
+}
+
+/* 포카 */
+.poca-grid {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 10px;
+}
+
+.poca-card {
+  aspect-ratio: 55 / 85;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #eaeaea;
+}
+
+.poca-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.not-owned {
+  opacity: 0.35;
+}
+
+/* 플로팅 */
+.floating-buttons {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: #f4b6c2;
+  color: #fff;
+  font-size: 22px;
+}
+
+/* 모달 */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 320px;
+  border-radius: 16px;
+  padding: 16px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+}
+
+.modal-content input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+#saveBtn {
+  background: #9bb7d4;
+  color: #fff;
+}
+
+#deleteBtn {
+  background: #f4b6c2;
+  color: #fff;
+}
