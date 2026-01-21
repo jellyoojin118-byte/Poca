@@ -1,115 +1,111 @@
 let isAdmin = false;
-let currentMember = "전체";
-let editIndex = null;
+let selectedCard = null;
 
-const pocas = JSON.parse(localStorage.getItem("pocas") || "[]");
+const cards = [
+  {
+    id: 1,
+    member: "정한",
+    album: "FACE THE SUN",
+    image: "",
+    owned: true
+  }
+];
 
 const grid = document.getElementById("pocaGrid");
-const searchInput = document.getElementById("searchInput");
-const members = document.querySelectorAll(".member");
-const addBtn = document.querySelector(".fab.add");
-const adminBtn = document.querySelector(".fab.admin");
+const editModal = document.getElementById("editModal");
+const addModal = document.getElementById("addModal");
 
-const modal = document.getElementById("modal");
-const editMember = document.getElementById("editMember");
-const editAlbum = document.getElementById("editAlbum");
-
-function save() {
-  localStorage.setItem("pocas", JSON.stringify(pocas));
-}
-
-function render() {
+function renderCards() {
   grid.innerHTML = "";
-  const keyword = searchInput.value.toLowerCase();
 
-  pocas.forEach((p, i) => {
-    if (
-      (currentMember === "전체" || p.member === currentMember) &&
-      p.album.toLowerCase().includes(keyword)
-    ) {
-      const card = document.createElement("div");
-      card.className = "poca-card" + (p.owned ? "" : " not-owned");
-      card.style.backgroundImage = `url(${p.image})`;
+  cards.forEach(card => {
+    const div = document.createElement("div");
+    div.className = "poca-card";
+    if (!card.owned) div.classList.add("not-owned");
 
-      card.onclick = () => {
-        p.owned = !p.owned;
-        save();
-        render();
-      };
-
-      if (isAdmin) {
-        let t;
-        card.ontouchstart = () => t = setTimeout(() => openModal(i), 600);
-        card.ontouchend = () => clearTimeout(t);
-      }
-
-      grid.appendChild(card);
+    if (card.image) {
+      const img = document.createElement("img");
+      img.src = card.image;
+      div.appendChild(img);
     }
+
+    div.onclick = () => {
+      card.owned = !card.owned;
+      renderCards();
+    };
+
+    div.oncontextmenu = e => {
+      e.preventDefault();
+      if (!isAdmin) return;
+
+      selectedCard = card;
+      document.getElementById("editMember").value = card.member;
+      document.getElementById("editAlbum").value = card.album;
+      editModal.classList.remove("hidden");
+    };
+
+    grid.appendChild(div);
   });
 }
 
-members.forEach(m => {
-  m.onclick = () => {
-    members.forEach(x => x.classList.remove("active"));
-    m.classList.add("active");
-    currentMember = m.textContent;
-    render();
-  };
-});
+renderCards();
 
-searchInput.oninput = render;
-
-adminBtn.onclick = () => {
-  if (prompt("비밀번호 입력") === "0000") {
+/* 관리자 */
+document.getElementById("adminBtn").onclick = () => {
+  const pw = prompt("비밀번호 입력");
+  if (pw === "0000") {
     isAdmin = true;
     alert("관리자 모드 ON");
   }
 };
 
-addBtn.onclick = () => {
-  if (!isAdmin) return alert("관리자만 가능");
-
-  const input = document.createElement("input");
-  input.type = "file";
-  input.accept = "image/*";
-
-  input.onchange = e => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const member = prompt("멤버");
-      const album = prompt("포카 이름");
-      pocas.push({ member, album, image: reader.result, owned: true });
-      save();
-      render();
-    };
-    reader.readAsDataURL(e.target.files[0]);
-  };
-  input.click();
-};
-
-function openModal(i) {
-  editIndex = i;
-  editMember.value = pocas[i].member;
-  editAlbum.value = pocas[i].album;
-  modal.classList.remove("hidden");
-}
-
-document.querySelector(".close-btn").onclick = () =>
-  modal.classList.add("hidden");
-
+/* 수정 */
 document.getElementById("saveBtn").onclick = () => {
-  pocas[editIndex].member = editMember.value;
-  pocas[editIndex].album = editAlbum.value;
-  save();
-  modal.classList.add("hidden");
-  render();
+  selectedCard.member = document.getElementById("editMember").value;
+  selectedCard.album = document.getElementById("editAlbum").value;
+  editModal.classList.add("hidden");
+  renderCards();
 };
 
+/* 삭제 */
 document.getElementById("deleteBtn").onclick = () => {
-  pocas.splice(editIndex, 1);
-  save();
-  modal.classList.add("hidden");
-  render();
+  const idx = cards.findIndex(c => c.id === selectedCard.id);
+  cards.splice(idx, 1);
+  editModal.classList.add("hidden");
+  renderCards();
 };
 
-render();
+/* 모달 닫기 */
+document.getElementById("closeModal").onclick = () => {
+  editModal.classList.add("hidden");
+};
+
+/* 추가 */
+document.getElementById("addBtn").onclick = () => {
+  if (!isAdmin) return;
+  addModal.classList.remove("hidden");
+};
+
+document.getElementById("addSaveBtn").onclick = () => {
+  const member = document.getElementById("addMember").value;
+  const album = document.getElementById("addAlbum").value;
+  const file = document.getElementById("addImage").files[0];
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    cards.push({
+      id: Date.now(),
+      member,
+      album,
+      image: reader.result,
+      owned: true
+    });
+    addModal.classList.add("hidden");
+    renderCards();
+  };
+  reader.readAsDataURL(file);
+};
+
+document.getElementById("closeAddModal").onclick = () => {
+  addModal.classList.add("hidden");
+};
