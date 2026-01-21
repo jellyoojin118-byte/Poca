@@ -8,13 +8,15 @@
 </head>
 <body>
 
-  <!-- 검색창 -->
+<div class="app-container">
+
+  <!-- 검색 -->
   <div class="search-wrap">
-    <input type="text" placeholder="포토카드 검색..." />
+    <input id="searchInput" placeholder="포토카드 검색..." />
   </div>
 
-  <!-- 멤버 바 -->
-  <div class="member-bar">
+  <!-- 멤버바 -->
+  <div class="member-bar" id="memberBar">
     <button class="member active">전체</button>
     <button class="member">에스쿱스</button>
     <button class="member">정한</button>
@@ -31,53 +33,35 @@
     <button class="member">디노</button>
   </div>
 
- <!-- 포카 -->
+  <!-- 포카 -->
   <div class="poca-grid" id="pocaGrid"></div>
 
-  <!-- 플로팅 -->
-  <div class="floating-buttons">
-    <button class="fab admin" id="adminBtn">A</button>
-    <button class="fab add" id="addBtn">+</button>
-  </div>
+</div>
 
-  <!-- 수정 / 삭제 -->
-  <div id="editModal" class="modal hidden">
-    <div class="modal-content">
-      <button class="close-btn" id="closeEdit">✕</button>
+<!-- 플로팅 버튼 -->
+<div class="floating-buttons">
+  <button class="fab admin">A</button>
+  <button class="fab add">+</button>
+</div>
 
-      <label>멤버</label>
-      <input id="editMember" />
+<!-- 수정 모달 -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <button class="close-btn">✕</button>
 
-      <label>앨범 / 포카 이름</label>
-      <input id="editAlbum" />
+    <label>멤버</label>
+    <input id="editMember" />
 
-      <div class="modal-actions">
-        <button id="saveBtn">수정</button>
-        <button id="deleteBtn">삭제</button>
-      </div>
+    <label>앨범 / 포카 이름</label>
+    <input id="editAlbum" />
+
+    <div class="modal-actions">
+      <button id="saveBtn">수정</button>
+      <button id="deleteBtn">삭제</button>
     </div>
   </div>
+</div>
 
-  <!-- 등록 -->
-  <div id="addModal" class="modal hidden">
-    <div class="modal-content">
-      <button class="close-btn" id="closeAdd">✕</button>
-
-      <label>멤버</label>
-      <input id="addMember" />
-
-      <label>앨범 / 포카 이름</label>
-      <input id="addAlbum" />
-
-      <input id="addImage" type="file" accept="image/*" />
-
-      <div class="modal-actions">
-        <button id="addSaveBtn">등록</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-  
+<script src="script.js"></script>
 </body>
 </html>
