@@ -3,50 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SEVENTEEN Poca List</title>
+  <title>SEVENTEEN PocaList</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- 멤버바 -->
-  <div class="member-bar" id="memberBar">
-    <span class="member active" data-member="ALL">ALL</span>
-    <span class="member" data-member="S.COUPS">S.COUPS</span>
-    <span class="member" data-member="JEONGHAN">JEONGHAN</span>
-    <span class="member" data-member="JOSHUA">JOSHUA</span>
-    <span class="member" data-member="WOOZI">WOOZI</span>
+<div class="app-container">
+
+  <!-- 검색창 -->
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="포토카드 검색..." />
+  </div>
+
+  <!-- 멤버 바 -->
+  <div class="member-bar">
+    <button class="member active">전체</button>
+    <button class="member">에스쿱스</button>
+    <button class="member">정한</button>
+    <button class="member">조슈아</button>
+    <button class="member">준</button>
+    <button class="member">호시</button>
+    <button class="member">원우</button>
+    <button class="member">우지</button>
+    <button class="member">디에잇</button>
+    <button class="member">민규</button>
+    <button class="member">도겸</button>
+    <button class="member">승관</button>
+    <button class="member">버논</button>
+    <button class="member">디노</button>
   </div>
 
   <!-- 포카 그리드 -->
-  <div class="card-grid" id="cardGrid"></div>
+  <div class="poca-grid"></div>
 
-  <!-- 파일 선택 -->
-  <input type="file" id="fileInput" accept="image/*" hidden />
+</div>
 
-  <!-- 하단 버튼 -->
-  <div class="floating-buttons">
-    <button id="adminBtn">A</button>
-    <button id="addBtn">+</button>
-  </div>
+<!-- 플로팅 버튼 -->
+<div class="floating-buttons">
+  <button class="fab admin">A</button>
+  <button class="fab add">+</button>
+</div>
 
-  <!-- 수정/삭제 모달 -->
-  <div class="modal hidden" id="editModal">
-    <div class="modal-box">
-      <button class="close-btn" id="closeModal">✕</button>
+<!-- 수정 / 삭제 모달 -->
+<div id="editModal" class="modal hidden">
+  <div class="modal-content">
+    <button id="closeModal" class="close-btn">✕</button>
 
-      <label>멤버</label>
-      <input id="editMember" />
+    <label>멤버</label>
+    <input id="editMember" type="text" />
 
-      <label>앨범 / 포카 이름</label>
-      <input id="editAlbum" />
+    <label>앨범 / 포카 이름</label>
+    <input id="editAlbum" type="text" />
 
-      <div class="modal-actions">
-        <button id="saveBtn">수정</button>
-        <button id="deleteBtn">삭제</button>
-      </div>
+    <div class="modal-actions">
+      <button id="saveBtn">수정</button>
+      <button id="deleteBtn">삭제</button>
     </div>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
