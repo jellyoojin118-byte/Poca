@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SEVENTEEN PocaList</title>
+  <title>SEVENTEEN Poca List</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="app-container">
 
-  <!-- 검색창 -->
+  <!-- 검색 -->
   <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="포토카드 검색..." />
+    <input type="text" id="searchInput" placeholder="포토카드 검색" />
   </div>
 
   <!-- 멤버 바 -->
-  <div class="member-bar">
-    <button class="member active">전체</button>
+  <div class="member-bar" id="memberBar">
+        <button class="member active">전체</button>
     <button class="member">에스쿱스</button>
     <button class="member">정한</button>
     <button class="member">조슈아</button>
@@ -32,28 +32,38 @@
     <button class="member">버논</button>
     <button class="member">디노</button>
   </div>
-
+  
   <!-- 포카 그리드 -->
-  <div class="poca-grid"></div>
+  <div class="poca-grid" id="pocaGrid"></div>
 
 </div>
 
 <!-- 플로팅 버튼 -->
 <div class="floating-buttons">
-  <button class="fab admin">A</button>
-  <button class="fab add">+</button>
+  <button class="fab" id="adminBtn">A</button>
+  <button class="fab" id="addBtn">+</button>
 </div>
 
-<!-- 수정 / 삭제 모달 -->
-<div id="editModal" class="modal hidden">
+<!-- 관리자 비밀번호 모달 -->
+<div class="modal hidden" id="adminModal">
   <div class="modal-content">
-    <button id="closeModal" class="close-btn">✕</button>
+    <button class="close-btn" onclick="closeModal('adminModal')">✕</button>
+    <label>비밀번호</label>
+    <input type="password" id="adminPassword" />
+    <button id="adminConfirmBtn">확인</button>
+  </div>
+</div>
+
+<!-- 등록 / 수정 모달 -->
+<div class="modal hidden" id="editModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal('editModal')">✕</button>
 
     <label>멤버</label>
-    <input id="editMember" type="text" />
+    <input type="text" id="editMember" />
 
-    <label>앨범 / 포카 이름</label>
-    <input id="editAlbum" type="text" />
+    <label>앨범 이름</label>
+    <input type="text" id="editAlbum" />
 
     <div class="modal-actions">
       <button id="saveBtn">수정</button>
@@ -61,6 +71,8 @@
     </div>
   </div>
 </div>
+
+<input type="file" id="imageInput" accept="image/*" hidden />
 
 <script src="script.js"></script>
 </body>
