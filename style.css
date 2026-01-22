@@ -56,18 +56,6 @@ body {
 }
 
 /* 포카 그리드 */
-.poca-grid {
-  padding: 12px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
-
-@media (min-width: 768px) {
-  .poca-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
 
 .poca-card {
   aspect-ratio: 55 / 85;
