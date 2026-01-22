@@ -13,7 +13,7 @@ body {
 /* 앱 컨테이너 */
 .app-container {
   width: 100%;
-  max-width: 480px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -63,6 +63,13 @@ body {
   background-size: cover;
   background-position: center;
   background-color: #eaeaea;
+}
+
+.poca-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px;
 }
 
 /* 보유 / 미보유 */
@@ -179,38 +186,3 @@ body {
   padding: 12px;
 }
 
-/* 모바일 (아이폰) */
-@media (max-width: 767px) {
-  .app-container {
-    max-width: 480px;
-  }
-
-  .poca-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-/* 태블릿 이상 (아이패드) */
-@media (min-width: 768px) {
-  .app-container {
-    max-width: 100%;
-    padding: 0 24px;
-  }
-
-  .poca-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-/* =========================
-   👤 멤버바 개선
-========================= */
-
-.member-bar {
-  flex-wrap: nowrap;
-}
-
-.member {
-  font-size: 16px;          /* 👈 글자 키움 */
-  white-space: nowrap;     /* 👈 절대 줄바꿈 금지 */
-}
