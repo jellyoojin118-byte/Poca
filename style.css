@@ -25,16 +25,17 @@ body {
 .member-bar {
   display: flex;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 10px;
   overflow-x: auto;
 }
 
 .member {
-  padding: 8px 14px;
-  border-radius: 999px;
   border: none;
-  background: #fff;
+  background: none;
+  font-size: 14px;
   color: #000;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .member.active {
