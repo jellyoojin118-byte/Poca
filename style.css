@@ -8,14 +8,9 @@ body {
   background: #fff;
 }
 
-.app-container {
-  max-width: 520px;
-  margin: 0 auto;
-}
-
 /* 검색 */
 .search-wrap {
-  padding: 10px;
+  padding: 8px 12px;
 }
 
 .search-wrap input {
@@ -26,55 +21,52 @@ body {
   background: #f1f1f1;
 }
 
-/* 멤버 바 */
+/* 멤버바 */
 .member-bar {
   display: flex;
   gap: 8px;
-  padding: 10px;
+  padding: 8px 12px;
   overflow-x: auto;
 }
 
 .member {
+  padding: 8px 14px;
+  border-radius: 999px;
   border: none;
-  background: none;
-  font-size: 14px;
+  background: #fff;
   color: #000;
-  cursor: pointer;
-  white-space: nowrap;
 }
 
 .member.active {
-  color: #9bb7d4; /* Serenity */
+  color: #9bb7d4;
 }
 
-/* 포카 그리드 */
+/* 포카 */
 .poca-grid {
+  padding: 12px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  padding: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 10px;
 }
 
 .poca-card {
   aspect-ratio: 55 / 85;
   border-radius: 10px;
-  background-size: cover;
-  background-position: center;
-  background-color: #eaeaea;
+  overflow: hidden;
+  background: #eaeaea;
+}
+
+.poca-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .not-owned {
   opacity: 0.35;
 }
 
-/* 반응형 */
-@media (max-width: 380px) {
-  .poca-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* 플로팅 버튼 */
+/* 플로팅 */
 .floating-buttons {
   position: fixed;
   right: 16px;
@@ -92,7 +84,6 @@ body {
   background: #f4b6c2;
   color: #fff;
   font-size: 22px;
-  cursor: pointer;
 }
 
 /* 모달 */
@@ -103,6 +94,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .hidden {
@@ -113,8 +105,8 @@ body {
   background: #fff;
   width: 90%;
   max-width: 320px;
-  padding: 16px;
   border-radius: 16px;
+  padding: 16px;
   position: relative;
 }
 
@@ -124,5 +116,33 @@ body {
   right: 10px;
   border: none;
   background: none;
-  font-size: 18px;
+}
+
+.modal-content input {
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+#saveBtn {
+  background: #9bb7d4;
+  color: #fff;
+}
+
+#deleteBtn {
+  background: #f4b6c2;
+  color: #fff;
 }
