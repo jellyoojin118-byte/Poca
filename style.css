@@ -173,3 +173,22 @@ body {
   border-radius: 10px;
   padding: 10px;
 }
+
+/* ===== 반응형 ===== */
+@media (max-width: 480px) {
+  .poca-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .poca-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ===== 앱 전체 컨테이너 ===== */
+.app-container {
+  width: 100%;
+  max-width: 480px;   /* 📱 아이폰 기준 */
+}
