@@ -1,53 +1,44 @@
-/* ===== 기본 설정 ===== */
 * {
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Apple SD Gothic Neo", "Pretendard", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, sans-serif;
 }
 
 body {
   margin: 0;
-  background: #ffffff;
-  color: #000;
+  background: #fff;
 }
 
-/* ===== 앱 컨테이너 ===== */
 .app-container {
-  width: 100%;
-  max-width: 720px;      /* 화면 넓어 보이게 */
+  max-width: 520px;
   margin: 0 auto;
 }
 
-/* ===== 검색 ===== */
+/* 검색 */
 .search-wrap {
-  padding: 10px 14px;
+  padding: 10px;
 }
 
 .search-wrap input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 12px;
   border-radius: 14px;
   border: none;
   background: #f1f1f1;
-  font-size: 15px;
 }
 
-/* ===== 멤버 바 ===== */
+/* 멤버 바 */
 .member-bar {
   display: flex;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 10px;
   overflow-x: auto;
 }
 
 .member {
-  flex-shrink: 0;
-  padding: 10px 16px;
-  border-radius: 999px;
   border: none;
-  background: #fff;
+  background: none;
+  font-size: 14px;
   color: #000;
-  font-size: 15px;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -56,30 +47,34 @@ body {
   color: #9bb7d4; /* Serenity */
 }
 
-/* ===== 포카 그리드 ===== */
+/* 포카 그리드 */
 .poca-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 기본 4열 */
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
-  padding: 12px;
+  padding: 10px;
 }
 
-/* ===== 포카 카드 ===== */
 .poca-card {
-  width: 100%;
   aspect-ratio: 55 / 85;
   border-radius: 10px;
-  background-color: #eaeaea;
   background-size: cover;
   background-position: center;
+  background-color: #eaeaea;
 }
 
-/* ===== 보유 / 미보유 ===== */
 .not-owned {
   opacity: 0.35;
 }
 
-/* ===== 플로팅 버튼 ===== */
+/* 반응형 */
+@media (max-width: 380px) {
+  .poca-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 플로팅 버튼 */
 .floating-buttons {
   position: fixed;
   right: 16px;
@@ -87,7 +82,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  z-index: 50;
 }
 
 .fab {
@@ -98,22 +92,20 @@ body {
   background: #f4b6c2;
   color: #fff;
   font-size: 22px;
-  font-weight: bold;
   cursor: pointer;
 }
 
-/* ===== 모달 ===== */
+/* 모달 */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0,0,0,0.4);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 100;
+  align-items: center;
 }
 
-.modal.hidden {
+.hidden {
   display: none;
 }
 
@@ -121,8 +113,8 @@ body {
   background: #fff;
   width: 90%;
   max-width: 320px;
-  border-radius: 16px;
   padding: 16px;
+  border-radius: 16px;
   position: relative;
 }
 
@@ -133,59 +125,4 @@ body {
   border: none;
   background: none;
   font-size: 18px;
-  cursor: pointer;
-}
-
-.modal-content label {
-  display: block;
-  margin-top: 10px;
-  font-size: 13px;
-}
-
-.modal-content input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-#saveBtn {
-  flex: 1;
-  background: #9bb7d4;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-#deleteBtn {
-  flex: 1;
-  background: #f4b6c2;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-}
-
-/* ===== 반응형 ===== */
-
-/* 일반 폰 */
-@media (min-width: 390px) {
-  .poca-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-/* 태블릿 */
-@media (min-width: 768px) {
-  .poca-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
 }
