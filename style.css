@@ -186,3 +186,14 @@ body {
   padding: 12px;
 }
 
+@media (min-width: 390px) {
+  .poca-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .poca-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
