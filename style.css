@@ -1,87 +1,107 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: white;
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Pretendard", sans-serif;
 }
 
-/* 멤버바 */
+body {
+  margin: 0;
+  background: #fff;
+  color: #000;
+}
+
+/* 앱 컨테이너 */
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* 검색 */
+.search-wrap {
+  padding: 8px 12px;
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: none;
+  background: #f1f1f1;
+  font-size: 15px;
+}
+
+/* 멤버 바 */
 .member-bar {
   display: flex;
-  gap: 14px;
-  padding: 14px;
+  gap: 8px;
+  padding: 8px 12px;
   overflow-x: auto;
-  white-space: nowrap;
 }
 
 .member {
-  font-size: 16px;
-  color: black;
-  cursor: pointer;
   flex-shrink: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-size: 15px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .member.active {
-  color: #9fd3ff;
+  color: #9bb7d4;
 }
 
 /* 포카 그리드 */
-.card-grid {
+.poca-grid {
+  padding: 12px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  padding: 12px;
-}
-
-@media (max-width: 390px) {
-  .card-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
 
 @media (min-width: 768px) {
-  .card-grid {
+  .poca-grid {
     grid-template-columns: repeat(6, 1fr);
   }
 }
 
-.card {
-  position: relative;
+.poca-card {
+  aspect-ratio: 55 / 85;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  background-color: #eaeaea;
 }
 
-.card img {
-  width: 100%;
-  border-radius: 8px;
-  transition: opacity 0.2s;
+/* 보유 / 미보유 */
+.not-owned {
+  opacity: 0.35;
 }
 
-.card.unowned img {
-  opacity: 0.3;
-}
-
-/* 버튼 */
+/* 플로팅 버튼 */
 .floating-buttons {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  right: 16px;
+  bottom: 16px;
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-#adminBtn, #addBtn {
-  width: 50px;
-  height: 50px;
+.fab {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border: none;
-  font-size: 20px;
-  color: white;
-}
-
-#adminBtn {
-  background: #bbb;
-}
-
-#addBtn {
-  background: #f4a7c5;
+  background: #f4b6c2;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* 모달 */
@@ -90,46 +110,66 @@ body {
   inset: 0;
   background: rgba(0,0,0,0.4);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
 
-.hidden {
+.modal.hidden {
   display: none;
 }
 
-.modal-box {
-  background: white;
-  width: 85%;
+.modal-content {
+  background: #fff;
+  width: 90%;
   max-width: 320px;
+  border-radius: 16px;
   padding: 16px;
-  border-radius: 14px;
   position: relative;
 }
 
 .close-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 10px;
+  right: 10px;
   border: none;
   background: none;
   font-size: 18px;
+  cursor: pointer;
 }
 
-.modal-box input {
+.modal-content label {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.modal-content input {
   width: 100%;
-  margin: 6px 0 12px;
   padding: 8px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
 .modal-actions {
   display: flex;
   gap: 10px;
+  margin-top: 14px;
 }
 
-.modal-actions button {
-  flex: 1;
-  padding: 10px;
+#saveBtn {
+  background: #9bb7d4;
+  color: #fff;
   border: none;
   border-radius: 10px;
+  padding: 10px;
+}
+
+#deleteBtn {
+  background: #f4b6c2;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
 }
