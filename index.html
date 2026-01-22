@@ -3,78 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SEVENTEEN Poca List</title>
+  <title>SEVENTEEN PocaList</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="app-container">
-
   <!-- 검색 -->
   <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="포토카드 검색" />
+    <input id="searchInput" type="text" placeholder="포토카드 검색..." />
   </div>
 
   <!-- 멤버 바 -->
   <div class="member-bar" id="memberBar">
-        <button class="member active">전체</button>
-    <button class="member">에스쿱스</button>
-    <button class="member">정한</button>
-    <button class="member">조슈아</button>
-    <button class="member">준</button>
-    <button class="member">호시</button>
-    <button class="member">원우</button>
-    <button class="member">우지</button>
-    <button class="member">디에잇</button>
-    <button class="member">민규</button>
-    <button class="member">도겸</button>
-    <button class="member">승관</button>
-    <button class="member">버논</button>
-    <button class="member">디노</button>
+    <button class="member active" data-member="전체">전체</button>
+    <button class="member" data-member="정한">정한</button>
+    <button class="member" data-member="조슈아">조슈아</button>
+    <button class="member" data-member="우지">우지</button>
   </div>
-  
-  <!-- 포카 그리드 -->
+
+  <!-- 포카 -->
   <div class="poca-grid" id="pocaGrid"></div>
 
-</div>
-
-<!-- 플로팅 버튼 -->
-<div class="floating-buttons">
-  <button class="fab" id="adminBtn">A</button>
-  <button class="fab" id="addBtn">+</button>
-</div>
-
-<!-- 관리자 비밀번호 모달 -->
-<div class="modal hidden" id="adminModal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal('adminModal')">✕</button>
-    <label>비밀번호</label>
-    <input type="password" id="adminPassword" />
-    <button id="adminConfirmBtn">확인</button>
+  <!-- 플로팅 -->
+  <div class="floating-buttons">
+    <button class="fab admin" id="adminBtn">A</button>
+    <button class="fab add" id="addBtn">+</button>
   </div>
-</div>
 
-<!-- 등록 / 수정 모달 -->
-<div class="modal hidden" id="editModal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeModal('editModal')">✕</button>
+  <!-- 수정 / 삭제 -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content">
+      <button class="close-btn" id="closeEdit">✕</button>
 
-    <label>멤버</label>
-    <input type="text" id="editMember" />
+      <label>멤버</label>
+      <input id="editMember" />
 
-    <label>앨범 이름</label>
-    <input type="text" id="editAlbum" />
+      <label>앨범 / 포카 이름</label>
+      <input id="editAlbum" />
 
-    <div class="modal-actions">
-      <button id="saveBtn">수정</button>
-      <button id="deleteBtn">삭제</button>
+      <div class="modal-actions">
+        <button id="saveBtn">수정</button>
+        <button id="deleteBtn">삭제</button>
+      </div>
     </div>
   </div>
-</div>
 
-<input type="file" id="imageInput" accept="image/*" hidden />
+  <!-- 등록 -->
+  <div id="addModal" class="modal hidden">
+    <div class="modal-content">
+      <button class="close-btn" id="closeAdd">✕</button>
 
-<script src="script.js"></script>
+      <label>멤버</label>
+      <input id="addMember" />
 
+      <label>앨범 / 포카 이름</label>
+      <input id="addAlbum" />
+
+      <input id="addImage" type="file" accept="image/*" />
+
+      <div class="modal-actions">
+        <button id="addSaveBtn">등록</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
